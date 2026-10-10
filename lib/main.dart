@@ -1,4 +1,4 @@
-Region: westus3
+ERegion: westus3
  Cloud: Azure
  24.04.5
  Download action repository 'actions/checkout@v5' (SHA:fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09)
