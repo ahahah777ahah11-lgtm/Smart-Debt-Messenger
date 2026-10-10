@@ -19,7 +19,7 @@ void main() async {
 }
 
 // ==========================================
-// التطبيق الرئيسي
+// ط§ظ„طھط·ط¨ظٹظ‚ ط§ظ„ط±ط¦ظٹط³ظٹ
 // ==========================================
 
 class SmartDebtApp extends StatelessWidget {
@@ -29,7 +29,7 @@ class SmartDebtApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'المديونية الذكية',
+      title: 'ط§ظ„ظ…ط¯ظٹظˆظ†ظٹط© ط§ظ„ط°ظƒظٹط©',
       locale: const Locale('ar'),
       theme: ThemeData(
         useMaterial3: true,
@@ -52,7 +52,7 @@ class SmartDebtApp extends StatelessWidget {
 }
 
 // ==========================================
-// قاعدة البيانات المحلية
+// ظ‚ط§ط¹ط¯ط© ط§ظ„ط¨ظٹط§ظ†ط§طھ ط§ظ„ظ…ط­ظ„ظٹط©
 // ==========================================
 
 class DebtDatabase {
@@ -139,13 +139,13 @@ class DebtDatabase {
       );
 
       if (result.isEmpty) {
-        throw Exception('العميل غير موجود');
+        throw Exception('ط§ظ„ط¹ظ…ظٹظ„ ط؛ظٹط± ظ…ظˆط¬ظˆط¯');
       }
 
       final oldBalance = (result.first['balance'] as num).toDouble();
 
-      // الدين يزيد الرصيد المستحق.
-      // السداد ينقص الرصيد المستحق.
+      // ط§ظ„ط¯ظٹظ† ظٹط²ظٹط¯ ط§ظ„ط±طµظٹط¯ ط§ظ„ظ…ط³طھط­ظ‚.
+      // ط§ظ„ط³ط¯ط§ط¯ ظٹظ†ظ‚طµ ط§ظ„ط±طµظٹط¯ ط§ظ„ظ…ط³طھط­ظ‚.
       final newBalance = type == 'debt' ? oldBalance + amount : oldBalance - amount;
 
       await txn.update(
@@ -217,7 +217,7 @@ class DebtDatabase {
                 ) ??
                 0.0;
 
-        // تجنب تكرار العميل إذا كان الاسم ورقم الهاتف متطابقين.
+        // طھط¬ظ†ط¨ طھظƒط±ط§ط± ط§ظ„ط¹ظ…ظٹظ„ ط¥ط°ط§ ظƒط§ظ† ط§ظ„ط§ط³ظ… ظˆط±ظ‚ظ… ط§ظ„ظ‡ط§طھظپ ظ…طھط·ط§ط¨ظ‚ظٹظ†.
         final existing = await txn.query(
           'customers',
           columns: ['id'],
@@ -272,7 +272,7 @@ class DebtDatabase {
 }
 
 // ==========================================
-// الشاشة الرئيسية
+// ط§ظ„ط´ط§ط´ط© ط§ظ„ط±ط¦ظٹط³ظٹط©
 // ==========================================
 
 class HomePage extends StatefulWidget {
@@ -351,15 +351,15 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('المديونية الذكية'),
+        title: const Text('ط§ظ„ظ…ط¯ظٹظˆظ†ظٹط© ط§ظ„ط°ظƒظٹط©'),
         actions: [
           IconButton(
-            tooltip: 'استيراد CSV',
+            tooltip: 'ط§ط³طھظٹط±ط§ط¯ CSV',
             onPressed: importCSV,
             icon: const Icon(Icons.file_upload_outlined),
           ),
           IconButton(
-            tooltip: 'تحديث',
+            tooltip: 'طھط­ط¯ظٹط«',
             onPressed: refreshCustomers,
             icon: const Icon(Icons.refresh),
           ),
@@ -371,7 +371,7 @@ class _HomePageState extends State<HomePage> {
           await refreshCustomers();
         },
         icon: const Icon(Icons.person_add_alt_1),
-        label: const Text('إضافة عميل'),
+        label: const Text('ط¥ط¶ط§ظپط© ط¹ظ…ظٹظ„'),
       ),
       body: loading
           ? const Center(child: CircularProgressIndicator())
@@ -383,7 +383,7 @@ class _HomePageState extends State<HomePage> {
                   summaryCard(),
                   const SizedBox(height: 18),
                   const Text(
-                    'إدارة العملاء',
+                    'ط¥ط¯ط§ط±ط© ط§ظ„ط¹ظ…ظ„ط§ط،',
                     style: TextStyle(
                       fontSize: 21,
                       fontWeight: FontWeight.bold,
@@ -392,7 +392,7 @@ class _HomePageState extends State<HomePage> {
                   const SizedBox(height: 12),
                   TextField(
                     decoration: InputDecoration(
-                      hintText: 'ابحث بالاسم أو رقم الهاتف',
+                      hintText: 'ط§ط¨ط­ط« ط¨ط§ظ„ط§ط³ظ… ط£ظˆ ط±ظ‚ظ… ط§ظ„ظ‡ط§طھظپ',
                       prefixIcon: const Icon(Icons.search),
                       filled: true,
                       fillColor: Colors.white,
@@ -409,9 +409,9 @@ class _HomePageState extends State<HomePage> {
                   Wrap(
                     spacing: 8,
                     children: [
-                      filterButton('الكل', 0),
-                      filterButton('عليهم ديون', 1),
-                      filterButton('لهم أرصدة', 2),
+                      filterButton('ط§ظ„ظƒظ„', 0),
+                      filterButton('ط¹ظ„ظٹظ‡ظ… ط¯ظٹظˆظ†', 1),
+                      filterButton('ظ„ظ‡ظ… ط£ط±طµط¯ط©', 2),
                     ],
                   ),
                   const SizedBox(height: 12),
@@ -419,7 +419,7 @@ class _HomePageState extends State<HomePage> {
                     const Padding(
                       padding: EdgeInsets.all(30),
                       child: Center(
-                        child: Text('لا توجد بيانات لعرضها'),
+                        child: Text('ظ„ط§ طھظˆط¬ط¯ ط¨ظٹط§ظ†ط§طھ ظ„ط¹ط±ط¶ظ‡ط§'),
                       ),
                     ),
                   ...filteredCustomers.map(customerCard),
@@ -443,7 +443,7 @@ class _HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              'ملخص الحسابات',
+              'ظ…ظ„ط®طµ ط§ظ„ط­ط³ط§ط¨ط§طھ',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 20,
@@ -452,19 +452,19 @@ class _HomePageState extends State<HomePage> {
             ),
             const SizedBox(height: 18),
             summaryRow(
-              'عدد العملاء',
+              'ط¹ط¯ط¯ ط§ظ„ط¹ظ…ظ„ط§ط،',
               '${customers.length}',
               Icons.people_alt_outlined,
             ),
             const Divider(color: Colors.white30, height: 25),
             summaryRow(
-              'إجمالي المبالغ المستحقة لك',
+              'ط¥ط¬ظ…ط§ظ„ظٹ ط§ظ„ظ…ط¨ط§ظ„ط؛ ط§ظ„ظ…ط³طھط­ظ‚ط© ظ„ظƒ',
               money(totalDebt),
               Icons.account_balance_wallet_outlined,
             ),
             const Divider(color: Colors.white30, height: 25),
             summaryRow(
-              'إجمالي المبالغ المستحقة للعملاء',
+              'ط¥ط¬ظ…ط§ظ„ظٹ ط§ظ„ظ…ط¨ط§ظ„ط؛ ط§ظ„ظ…ط³طھط­ظ‚ط© ظ„ظ„ط¹ظ…ظ„ط§ط،',
               money(totalCredit),
               Icons.payments_outlined,
             ),
@@ -518,10 +518,10 @@ class _HomePageState extends State<HomePage> {
             : Colors.blueGrey;
 
     final String balanceLabel = balance > 0
-        ? 'عليه'
+        ? 'ط¹ظ„ظٹظ‡'
         : balance < 0
-            ? 'له'
-            : 'الحساب متوازن';
+            ? 'ظ„ظ‡'
+            : 'ط§ظ„ط­ط³ط§ط¨ ظ…طھظˆط§ط²ظ†';
 
     return Card(
       margin: const EdgeInsets.only(bottom: 10),
@@ -548,7 +548,7 @@ class _HomePageState extends State<HomePage> {
                 style: const TextStyle(fontWeight: FontWeight.bold),
               ),
               subtitle: Text(
-                customer['phone'].toString().isEmpty ? 'لا يوجد رقم هاتف' : customer['phone'].toString(),
+                customer['phone'].toString().isEmpty ? 'ظ„ط§ ظٹظˆط¬ط¯ ط±ظ‚ظ… ظ‡ط§طھظپ' : customer['phone'].toString(),
               ),
               trailing: PopupMenuButton<String>(
                 onSelected: (action) async {
@@ -563,11 +563,11 @@ class _HomePageState extends State<HomePage> {
                 itemBuilder: (_) => const [
                   PopupMenuItem(
                     value: 'history',
-                    child: Text('سجل الحركات'),
+                    child: Text('ط³ط¬ظ„ ط§ظ„ط­ط±ظƒط§طھ'),
                   ),
                   PopupMenuItem(
                     value: 'delete',
-                    child: Text('حذف العميل'),
+                    child: Text('ط­ط°ظپ ط§ظ„ط¹ظ…ظٹظ„'),
                   ),
                 ],
               ),
@@ -581,7 +581,7 @@ class _HomePageState extends State<HomePage> {
               ),
               child: Row(
                 children: [
-                  const Text('الرصيد: '),
+                  const Text('ط§ظ„ط±طµظٹط¯: '),
                   Text(
                     '$balanceLabel ${money(balance.abs())}',
                     style: TextStyle(
@@ -606,7 +606,7 @@ class _HomePageState extends State<HomePage> {
                     await refreshCustomers();
                   },
                   icon: const Icon(Icons.add),
-                  label: const Text('إضافة دين'),
+                  label: const Text('ط¥ط¶ط§ظپط© ط¯ظٹظ†'),
                 ),
                 OutlinedButton.icon(
                   onPressed: () async {
@@ -617,12 +617,12 @@ class _HomePageState extends State<HomePage> {
                     await refreshCustomers();
                   },
                   icon: const Icon(Icons.payments_outlined),
-                  label: const Text('تسجيل سداد'),
+                  label: const Text('طھط³ط¬ظٹظ„ ط³ط¯ط§ط¯'),
                 ),
                 FilledButton.tonalIcon(
                   onPressed: () => sendSMS(customer),
                   icon: const Icon(Icons.sms_outlined),
-                  label: const Text('رسالة SMS'),
+                  label: const Text('ط±ط³ط§ظ„ط© SMS'),
                 ),
               ],
             ),
@@ -633,7 +633,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   // ========================================
-  // إضافة عميل
+  // ط¥ط¶ط§ظپط© ط¹ظ…ظٹظ„
   // ========================================
 
   Future<void> showCustomerForm(BuildContext context) async {
@@ -647,7 +647,7 @@ class _HomePageState extends State<HomePage> {
       context: context,
       builder: (dialogContext) {
         return AlertDialog(
-          title: const Text('إضافة عميل جديد'),
+          title: const Text('ط¥ط¶ط§ظپط© ط¹ظ…ظٹظ„ ط¬ط¯ظٹط¯'),
           content: Form(
             key: formKey,
             child: SingleChildScrollView(
@@ -657,11 +657,11 @@ class _HomePageState extends State<HomePage> {
                   TextFormField(
                     controller: nameController,
                     decoration: const InputDecoration(
-                      labelText: 'اسم العميل',
+                      labelText: 'ط§ط³ظ… ط§ظ„ط¹ظ…ظٹظ„',
                     ),
                     validator: (value) {
                       if (value == null || value.trim().isEmpty) {
-                        return 'أدخل اسم العميل';
+                        return 'ط£ط¯ط®ظ„ ط§ط³ظ… ط§ظ„ط¹ظ…ظٹظ„';
                       }
                       return null;
                     },
@@ -670,7 +670,7 @@ class _HomePageState extends State<HomePage> {
                     controller: phoneController,
                     keyboardType: TextInputType.phone,
                     decoration: const InputDecoration(
-                      labelText: 'رقم الهاتف',
+                      labelText: 'ط±ظ‚ظ… ط§ظ„ظ‡ط§طھظپ',
                     ),
                   ),
                   TextFormField(
@@ -680,12 +680,12 @@ class _HomePageState extends State<HomePage> {
                       signed: true,
                     ),
                     decoration: const InputDecoration(
-                      labelText: 'الرصيد الابتدائي',
-                      helperText: 'موجب = عليه دين، سالب = له رصيد',
+                      labelText: 'ط§ظ„ط±طµظٹط¯ ط§ظ„ط§ط¨طھط¯ط§ط¦ظٹ',
+                      helperText: 'ظ…ظˆط¬ط¨ = ط¹ظ„ظٹظ‡ ط¯ظٹظ†طŒ ط³ط§ظ„ط¨ = ظ„ظ‡ ط±طµظٹط¯',
                     ),
                     validator: (value) {
                       if (double.tryParse(value ?? '') == null) {
-                        return 'أدخل مبلغًا صحيحًا';
+                        return 'ط£ط¯ط®ظ„ ظ…ط¨ظ„ط؛ظ‹ط§ طµط­ظٹط­ظ‹ط§';
                       }
                       return null;
                     },
@@ -697,7 +697,7 @@ class _HomePageState extends State<HomePage> {
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(dialogContext, false),
-              child: const Text('إلغاء'),
+              child: const Text('ط¥ظ„ط؛ط§ط،'),
             ),
             FilledButton(
               onPressed: () async {
@@ -715,7 +715,7 @@ class _HomePageState extends State<HomePage> {
                   Navigator.pop(dialogContext, true);
                 }
               },
-              child: const Text('حفظ'),
+              child: const Text('ط­ظپط¸'),
             ),
           ],
         );
@@ -732,7 +732,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   // ========================================
-  // تسجيل دين أو دفعة
+  // طھط³ط¬ظٹظ„ ط¯ظٹظ† ط£ظˆ ط¯ظپط¹ط©
   // ========================================
 
   Future<void> showTransactionForm(
@@ -748,11 +748,11 @@ class _HomePageState extends State<HomePage> {
       context: context,
       builder: (dialogContext) {
         return AlertDialog(
-          title: Text(isDebt ? 'إضافة دين' : 'تسجيل سداد'),
+          title: Text(isDebt ? 'ط¥ط¶ط§ظپط© ط¯ظٹظ†' : 'طھط³ط¬ظٹظ„ ط³ط¯ط§ط¯'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text('العميل: ${customer['name']}'),
+              Text('ط§ظ„ط¹ظ…ظٹظ„: ${customer['name']}'),
               TextField(
                 controller: amountController,
                 autofocus: true,
@@ -760,13 +760,13 @@ class _HomePageState extends State<HomePage> {
                   decimal: true,
                 ),
                 decoration: const InputDecoration(
-                  labelText: 'المبلغ',
+                  labelText: 'ط§ظ„ظ…ط¨ظ„ط؛',
                 ),
               ),
               TextField(
                 controller: noteController,
                 decoration: const InputDecoration(
-                  labelText: 'البيان أو الملاحظة',
+                  labelText: 'ط§ظ„ط¨ظٹط§ظ† ط£ظˆ ط§ظ„ظ…ظ„ط§ط­ط¸ط©',
                 ),
               ),
             ],
@@ -774,7 +774,7 @@ class _HomePageState extends State<HomePage> {
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(dialogContext, false),
-              child: const Text('إلغاء'),
+              child: const Text('ط¥ظ„ط؛ط§ط،'),
             ),
             FilledButton(
               onPressed: () async {
@@ -783,7 +783,7 @@ class _HomePageState extends State<HomePage> {
                 if (amount == null || amount <= 0) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
-                      content: Text('أدخل مبلغًا أكبر من صفر'),
+                      content: Text('ط£ط¯ط®ظ„ ظ…ط¨ظ„ط؛ظ‹ط§ ط£ظƒط¨ط± ظ…ظ† طµظپط±'),
                     ),
                   );
                   return;
@@ -800,7 +800,7 @@ class _HomePageState extends State<HomePage> {
                   Navigator.pop(dialogContext, true);
                 }
               },
-              child: const Text('حفظ الحركة'),
+              child: const Text('ط­ظپط¸ ط§ظ„ط­ط±ظƒط©'),
             ),
           ],
         );
@@ -816,28 +816,28 @@ class _HomePageState extends State<HomePage> {
   }
 
   // ========================================
-  // إرسال رسالة SMS
+  // ط¥ط±ط³ط§ظ„ ط±ط³ط§ظ„ط© SMS
   // ========================================
 
   Future<void> sendSMS(Map<String, dynamic> customer) async {
     final phone = customer['phone'].toString().trim();
 
     if (phone.isEmpty) {
-      showMessage('أضف رقم هاتف العميل أولًا');
+      showMessage('ط£ط¶ظپ ط±ظ‚ظ… ظ‡ط§طھظپ ط§ظ„ط¹ظ…ظٹظ„ ط£ظˆظ„ظ‹ط§');
       return;
     }
 
     final balance = (customer['balance'] as num).toDouble();
 
     if (balance <= 0) {
-      showMessage('لا يوجد مبلغ مستحق على هذا العميل');
+      showMessage('ظ„ط§ ظٹظˆط¬ط¯ ظ…ط¨ظ„ط؛ ظ…ط³طھط­ظ‚ ط¹ظ„ظ‰ ظ‡ط°ط§ ط§ظ„ط¹ظ…ظٹظ„');
       return;
     }
 
     final name = customer['name'].toString();
 
     final message =
-        'مرحبًا $name، نذكرك بأن الرصيد المستحق عليك هو ${money(balance)}. نرجو تسوية الحساب، وشكرًا لك.';
+        'ظ…ط±ط­ط¨ظ‹ط§ $nameطŒ ظ†ط°ظƒط±ظƒ ط¨ط£ظ† ط§ظ„ط±طµظٹط¯ ط§ظ„ظ…ط³طھط­ظ‚ ط¹ظ„ظٹظƒ ظ‡ظˆ ${money(balance)}. ظ†ط±ط¬ظˆ طھط³ظˆظٹط© ط§ظ„ط­ط³ط§ط¨طŒ ظˆط´ظƒط±ظ‹ط§ ظ„ظƒ.';
 
     final uri = Uri(
       scheme: 'sms',
@@ -848,15 +848,15 @@ class _HomePageState extends State<HomePage> {
     try {
       final launched = await launchUrl(uri);
       if (launched == false) {
-        showMessage('تعذر فتح تطبيق الرسائل على الهاتف');
+        showMessage('طھط¹ط°ط± ظپطھط­ طھط·ط¨ظٹظ‚ ط§ظ„ط±ط³ط§ط¦ظ„ ط¹ظ„ظ‰ ط§ظ„ظ‡ط§طھظپ');
       }
     } catch (e) {
-      showMessage('تعذر فتح تطبيق الرسائل');
+      showMessage('طھط¹ط°ط± ظپطھط­ طھط·ط¨ظٹظ‚ ط§ظ„ط±ط³ط§ط¦ظ„');
     }
   }
 
   // ========================================
-  // سجل الحركات
+  // ط³ط¬ظ„ ط§ظ„ط­ط±ظƒط§طھ
   // ========================================
 
   Future<void> showHistory(int customerId, String name) async {
@@ -868,11 +868,11 @@ class _HomePageState extends State<HomePage> {
       context: context,
       builder: (dialogContext) {
         return AlertDialog(
-          title: Text('سجل حركات $name'),
+          title: Text('ط³ط¬ظ„ ط­ط±ظƒط§طھ $name'),
           content: SizedBox(
             width: double.maxFinite,
             child: transactions.isEmpty
-                ? const Text('لا توجد حركات مسجلة')
+                ? const Text('ظ„ط§ طھظˆط¬ط¯ ط­ط±ظƒط§طھ ظ…ط³ط¬ظ„ط©')
                 : ListView.builder(
                     shrinkWrap: true,
                     itemCount: transactions.length,
@@ -888,7 +888,7 @@ class _HomePageState extends State<HomePage> {
                           isDebt ? Icons.add_circle_outline : Icons.remove_circle_outline,
                           color: isDebt ? Colors.red : Colors.green,
                         ),
-                        title: Text('${isDebt ? 'دين' : 'سداد'}: ${money(amount)}'),
+                        title: Text('${isDebt ? 'ط¯ظٹظ†' : 'ط³ط¯ط§ط¯'}: ${money(amount)}'),
                         subtitle: Text('${item['note']}\n${item['created_at']}'),
                       );
                     },
@@ -897,7 +897,7 @@ class _HomePageState extends State<HomePage> {
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(dialogContext),
-              child: const Text('إغلاق'),
+              child: const Text('ط¥ط؛ظ„ط§ظ‚'),
             ),
           ],
         );
@@ -906,7 +906,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   // ========================================
-  // حذف عميل
+  // ط­ط°ظپ ط¹ظ…ظٹظ„
   // ========================================
 
   Future<void> confirmDelete(int id, String name) async {
@@ -914,18 +914,18 @@ class _HomePageState extends State<HomePage> {
       context: context,
       builder: (dialogContext) {
         return AlertDialog(
-          title: const Text('تأكيد الحذف'),
+          title: const Text('طھط£ظƒظٹط¯ ط§ظ„ط­ط°ظپ'),
           content: Text(
-            'هل تريد حذف العميل $name وسجل حركاته؟ لا يمكن التراجع عن هذه العملية.',
+            'ظ‡ظ„ طھط±ظٹط¯ ط­ط°ظپ ط§ظ„ط¹ظ…ظٹظ„ $name ظˆط³ط¬ظ„ ط­ط±ظƒط§طھظ‡طں ظ„ط§ ظٹظ…ظƒظ† ط§ظ„طھط±ط§ط¬ط¹ ط¹ظ† ظ‡ط°ظ‡ ط§ظ„ط¹ظ…ظ„ظٹط©.',
           ),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(dialogContext, false),
-              child: const Text('إلغاء'),
+              child: const Text('ط¥ظ„ط؛ط§ط،'),
             ),
             FilledButton(
               onPressed: () => Navigator.pop(dialogContext, true),
-              child: const Text('حذف'),
+              child: const Text('ط­ط°ظپ'),
             ),
           ],
         );
@@ -939,7 +939,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   // ========================================
-  // استيراد CSV
+  // ط§ط³طھظٹط±ط§ط¯ CSV
   // ========================================
 
   Future<void> importCSV() async {
@@ -956,7 +956,7 @@ class _HomePageState extends State<HomePage> {
       final Uint8List? bytes = file.bytes;
 
       if (bytes == null) {
-        showMessage('تعذر قراءة الملف');
+        showMessage('طھط¹ط°ط± ظ‚ط±ط§ط،ط© ط§ظ„ظ…ظ„ظپ');
         return;
       }
 
@@ -965,16 +965,16 @@ class _HomePageState extends State<HomePage> {
       final rows = CsvToListConverter(shouldParseNumbers: false).convert(text);
 
       if (rows.isEmpty) {
-        showMessage('الملف فارغ');
+        showMessage('ط§ظ„ظ…ظ„ظپ ظپط§ط±ط؛');
         return;
       }
 
       final firstRow = rows.first.map((value) => value.toString().trim().toLowerCase()).toList();
 
       // try to auto-detect header columns
-      int nameIndex = firstRow.indexWhere((v) => ['name', 'name_ar', 'الاسم', 'اسم'].contains(v));
-      int phoneIndex = firstRow.indexWhere((v) => ['phone', 'tel', 'telephone', 'رقم', 'phone_number', 'هاتف'].contains(v));
-      int balanceIndex = firstRow.indexWhere((v) => ['balance', 'amount', 'الرصيد', 'value'].contains(v));
+      int nameIndex = firstRow.indexWhere((v) => ['name', 'name_ar', 'ط§ظ„ط§ط³ظ…', 'ط§ط³ظ…'].contains(v));
+      int phoneIndex = firstRow.indexWhere((v) => ['phone', 'tel', 'telephone', 'ط±ظ‚ظ…', 'phone_number', 'ظ‡ط§طھظپ'].contains(v));
+      int balanceIndex = firstRow.indexWhere((v) => ['balance', 'amount', 'ط§ظ„ط±طµظٹط¯', 'value'].contains(v));
 
       // If headers not detected, assume first three columns in order name, phone, balance
       final startRow = (nameIndex >= 0 || phoneIndex >= 0 || balanceIndex >= 0) ? 1 : 0;
@@ -1007,16 +1007,16 @@ class _HomePageState extends State<HomePage> {
       }
 
       if (parsed.isEmpty) {
-        showMessage('لم يتم العثور على بيانات صالحة في الملف');
+        showMessage('ظ„ظ… ظٹطھظ… ط§ظ„ط¹ط«ظˆط± ط¹ظ„ظ‰ ط¨ظٹط§ظ†ط§طھ طµط§ظ„ط­ط© ظپظٹ ط§ظ„ظ…ظ„ظپ');
         return;
       }
 
       await DebtDatabase.instance.importCustomers(parsed);
       await refreshCustomers();
 
-      showMessage('تم استيراد ${parsed.length} عميل بنجاح');
+      showMessage('طھظ… ط§ط³طھظٹط±ط§ط¯ ${parsed.length} ط¹ظ…ظٹظ„ ط¨ظ†ط¬ط§ط­');
     } catch (e) {
-      showMessage('تعذر استيراد الملف: ${e.toString()}');
+      showMessage('طھط¹ط°ط± ط§ط³طھظٹط±ط§ط¯ ط§ظ„ظ…ظ„ظپ: ${e.toString()}');
     }
   }
 
