@@ -1085,3 +1085,15 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  sqflite: ^2.4.2
+  path: ^1.9.1
+  file_picker: ^10.1.9
+  csv: ^6.0.0
+  url_launcher: ^6.3.1
+flutter pub get
+flutter build apk --release
