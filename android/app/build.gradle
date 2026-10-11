@@ -23,7 +23,7 @@ if (flutterVersionName == null) {
 }
 
 android {
-    namespace = "com.smartdebt.messenger"
+    namespace = "com.smartdebt.app"
     compileSdk = 36
     ndkVersion = flutter.ndkVersion
 
@@ -37,7 +37,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.smartdebt.messenger"
+        applicationId = "com.smartdebt.app"
         minSdk = 24
         targetSdk = 33
         versionCode = flutterVersionCode.toInteger()
